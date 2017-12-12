@@ -1,37 +1,27 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 
-exports.getUsers = (req, res, next) => {
-  User.find()
-  .then( users => {
-    res.json(users)
-  })
+exports.getUsers = async function(req, res, next){
+  const users = await User.find()
+  res.json(users)
 }
 
-exports.getUser = (req, res, next) => {
-  User.findById( req.params.id )
-  .then( user => {
-    res.send(user);
-  })
+exports.getUser = async function(req, res, next){
+  const user = await User.findById( req.params.id )
+  res.send(user);
 }
 
-exports.createUser = (req, res, next) => {
-  User.create(req.body)
-  .then(()=> {
-    res.send('well done');
-  })
+exports.createUser = async function(req, res, next){
+  const newUser = await User.create(req.body)
+  res.send(newUser);
 }
 
-exports.updateUser = (req, res, next) => {
-  User.findByIdAndUpdate( req.params.id, req.body, { new: true } )
-  .then( updatedUser => {
-    res.send(updatedUser);
-  })
+exports.updateUser = async function(req, res, next){
+  const updatedUser = await User.findByIdAndUpdate( req.params.id, req.body, { new: true } )
+  res.send(updatedUser);
 }
 
-exports.deleteUser = (req, res, next) => {
-  User.findByIdAndRemove( req.params.id )
-  .then( deletedUser => {
-    res.send(deletedUser);
-  })
+exports.deleteUser = async function(req, res, next){
+  const deletedUser = User.findByIdAndRemove( req.params.id )
+  res.send(deletedUser);
 }
