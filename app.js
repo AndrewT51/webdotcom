@@ -13,18 +13,18 @@ app.use(bodyParser.json());
 app.use(routes);
 
 app.get('*', (req, res, next) => {
-  const err = new Error();
+  const err = new Error('Route not found');
   err.status = 404;
-  err.message = "Route not found"
   next(err);
 });
 
 // handling 404 errors
 app.use((err, req, res, next) => {
-  if(err.status !== 404) {
-    return next();
-  }
-  res.send(err.message);
+  console.log('here: ', err);
+  // if(err.status !== 404) {
+  //   return next();
+  // }
+  res.status(err.status).send(err.message);
 });
 
 app.listen(PORT, () => console.log(`Started on port ${ PORT }`));
