@@ -31,7 +31,6 @@ app.get('*', (req, res, next) => {
 
 // handling 404 errors
 app.use((err, req, res, next) => {
-  console.log('here: ', err);
   // if(err.status !== 404) {
   //   return next();
   // }

@@ -5,6 +5,7 @@ const { validateUser } = require('../middleware');
 const { sanitizeUser } = require('../middleware');
 const checkFields = [ sanitizeUser, validateUser ]
 
+// All the user routes
 router.get('/users', asyncMiddleware(userCtrl.getUsers));
 router.post('/users', checkFields, asyncMiddleware(userCtrl.createUser));
 router.get('/users/:id', asyncMiddleware(userCtrl.getUser));

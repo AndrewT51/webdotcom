@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const { queryBuilder } = require('../helpers/controllers');
 
 exports.getUsers = async (req, res, next) => {
-  const users = await User.find()
+  const query = queryBuilder(req.query)
+  const users = await User.find(query)
   res.json(users)
 }
 

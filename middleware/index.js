@@ -1,5 +1,4 @@
 const validation = require('../helpers/validation');
-// const sanitization = require('../helpers/sanitization')
 const { trim, escape } = require('validator');
 const { FIELDS_TO_SANITIZE } = require('../config').constants
 
@@ -11,6 +10,7 @@ exports.asyncMiddleware = fn =>
     .catch(next);
   };
 
+// Middleware for validating the user fields
 exports.validateUser = (req, res, next) => {
   const { name, surname, birthdate, timezone, positionHeld } = req.body
   const { checkTimezone, checkName, checkBirthdate, checkPositionHeld } = validation;
@@ -29,9 +29,11 @@ exports.validateUser = (req, res, next) => {
   next()
 }
 
+// Middleware to sanitize user fields - escape special characters,
+// remove consecutive spaces and trim whitespace either side
 exports.sanitizeUser = ({body}, res, next) => {
   FIELDS_TO_SANITIZE.forEach( field => {
-    escape(trim(body[field])).replace(/ +/, ' ')
+    escape(trim(body[field])).replace(/ +/, ' ');
   })
   next()
 }
