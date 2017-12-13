@@ -12,19 +12,23 @@ exports.asyncMiddleware = fn =>
 
 // Middleware for validating the user fields
 exports.validateUser = (req, res, next) => {
+  const validationErrors = [];
   const { name, surname, birthdate, timezone, positionHeld } = req.body
   const { checkTimezone, checkName, checkBirthdate, checkPositionHeld } = validation;
   if (!checkTimezone(timezone)){
-    throw new Error('Invalid timezone')
+    validationErrors.push('Invalid timezone')
   }
   if (!checkName(name) || !checkName(surname)){
-    throw new Error('Invalid name')
+    validationErrors.push('Invalid name or surname')
   }
   if (!checkBirthdate(birthdate)){
-    throw new Error('Invalid birthdate')
+    validationErrors.push('Invalid birthdate')
   }
   if (!checkPositionHeld(positionHeld)){
-    throw new Error('Invalid position')
+    validationErrors.push('Invalid position held')
+  }
+  if (validationErrors.length){
+    return res.send({ errors: validationErrors })
   }
   next()
 }
