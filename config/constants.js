@@ -6,5 +6,12 @@ module.exports = {
   POSITION_HELD: {
     MIN_LENGTH: 3,
     MAX_LENGTH: 20
-  }
+  },
+  FIELDS_TO_SANITIZE: [
+    'name',
+    'surname',
+    'birthdate',
+    'timezone',
+    'positionHeld'
+  ]
 }

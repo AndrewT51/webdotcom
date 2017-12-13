@@ -1,4 +1,7 @@
-const validation = require('../helpers/validation')
+const validation = require('../helpers/validation');
+// const sanitization = require('../helpers/sanitization')
+const { trim, escape } = require('validator');
+const { FIELDS_TO_SANITIZE } = require('../config').constants
 
 // I took this middleware from https://medium.com/@Abazhenov/using-async-await-in-express-with-node-8-b8af872c0016
 // used to wrap async functions with error handling instead of throwing try/catch statements in every route
@@ -11,7 +14,6 @@ exports.asyncMiddleware = fn =>
 exports.validateUser = (req, res, next) => {
   const { name, surname, birthdate, timezone, positionHeld } = req.body
   const { checkTimezone, checkName, checkBirthdate, checkPositionHeld } = validation;
-  console.log(name);
   if (!checkTimezone(timezone)){
     throw new Error('Invalid timezone')
   }
@@ -24,5 +26,12 @@ exports.validateUser = (req, res, next) => {
   if (!checkPositionHeld(positionHeld)){
     throw new Error('Invalid position')
   }
+  next()
+}
+
+exports.sanitizeUser = ({body}, res, next) => {
+  FIELDS_TO_SANITIZE.forEach( field => {
+    escape(trim(body[field])).replace(/ +/, ' ')
+  })
   next()
 }
