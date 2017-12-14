@@ -7,7 +7,7 @@
     "start": "forever start app.js",
     "stop": "forever stop app.js",
     "dev": "nodemon app.js",
-    "test": "mocha",
+    "test": "mocha --exit",
     "seed": "node db/seed"
   },
   "keywords": [],
