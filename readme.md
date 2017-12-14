@@ -37,6 +37,7 @@ To stop the app: `yarn run stop`
 ### Environment variables
 You will need your own `.env` file, containing the following:
 MONGO_URL=\<your mongo url here\>
+TEST_MONGO_URL=\<your test db mongo url here \>
 PORT=\<your port here\>
 
 
