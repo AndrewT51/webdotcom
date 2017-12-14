@@ -20,7 +20,7 @@ exports.validateUser = (req, res, next) => {
     if (timezone && !checkTimezone(timezone)){
       validationErrors.push('Invalid timezone')
     }
-    if (name && !checkName(name) || !checkName(surname)){
+    if ((name && !checkName(name)) || (surname && !checkName(surname))){
       validationErrors.push('Invalid name or surname')
     }
     if (birthdate && !checkBirthdate(birthdate)){

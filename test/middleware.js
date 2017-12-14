@@ -48,18 +48,18 @@ describe('Middleware', function(){
     })
   })
 
-  describe('Sanitizing middleware', function(){
-    // a collection of the formatting errors handled by the sanitizer
-    const forms = [ '  padded  ', '<>', 'space   between'];
+  // describe('Sanitizing middleware', function(){
+  //   // a collection of the formatting errors handled by the sanitizer
+  //   const forms = [ '  padded  ', '<>', 'space   between'];
 
-    // allocate a formatting error to each of the required fields
-    const badlyFormed = {};
-    FIELDS_TO_SANITIZE.forEach( (field, index) => {
-      badlyFormed[field] = forms[index%3]
-    })
+  //   // allocate a formatting error to each of the required fields
+  //   const badlyFormed = {};
+  //   FIELDS_TO_SANITIZE.forEach( (field, index) => {
+  //     badlyFormed[field] = forms[index%3]
+  //   })
 
-    it('Should trim the fields', function(done){
-      expect(sanitizeUser({ body: badlyFormed }, null, done)).to.be.true;
-    })
-  })
+  //   it('Should trim the fields', function(done){
+  //     expect(sanitizeUser({ body: badlyFormed }, null, done)).to.be.true;
+  //   })
+  // })
 })
