@@ -39,7 +39,7 @@ User.remove({})
       .set('content-type', 'application/json')
       .send(validUser)
       .end(function(err, res, body){
-        expect(res).to.have.status(200);
+        expect(res).to.have.status(201);
         expect(res.body).to.be.an('object');
         expect(res.body).to.include.all.keys(expectedKeys);
         expect(res.body).to.have.a.property('createdAt');
