@@ -1,3 +1,4 @@
+require('dotenv').config()
 require('../models');
 const { MONGO_URL } = process.env;
 const mongoose = require('mongoose');

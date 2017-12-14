@@ -13,7 +13,8 @@ exports.checkName = name => isAlpha(name) && isByteLength(name, {
 // ensure the timezone is a valid one
 exports.checkTimezone = zone => !!moment.tz.zone(zone)
 
-// ensure the birthdate is not later than today
+// ensure the birthdate is not later than today, and implicitly
+// if it is a valid date
 exports.checkBirthdate = birthdate => isBefore(birthdate)
 
 // check the position held is only made of letters and spaces

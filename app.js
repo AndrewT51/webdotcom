@@ -31,10 +31,10 @@ app.get('*', (req, res, next) => {
 
 // handling 404 errors
 app.use((err, req, res, next) => {
-  // if(err.status !== 404) {
-  //   return next();
-  // }
-  res.status(err.status).send(err.message);
+  if(err.status !== 404) {
+    return res.status(500).send(err.message);
+  }
+  res.status(404).send(err.message);
 });
 
 
