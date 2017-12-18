@@ -19,10 +19,10 @@ const UserSchema = new mongoose.Schema({
   positionHeld: {
     type: String,
     minlength: POSITION_HELD.MIN_LENGTH,
-    maxlength: POSITION_HELD.MAX_LENGTH
-  }
+    maxlength: POSITION_HELD.MAX_LENGTH,
+  },
 }, {
-  timestamps: true
-})
+  timestamps: true,
+});
 
 module.exports = mongoose.model('User', UserSchema);

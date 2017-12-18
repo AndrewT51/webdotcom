@@ -5,5 +5,5 @@ const production = require('./production');
 module.exports = {
   production,
   development,
-  constants
-}
+  constants,
+};

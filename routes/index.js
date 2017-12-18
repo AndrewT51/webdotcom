@@ -1,9 +1,9 @@
 const router = require('express').Router();
 const userCtrl = require('../controllers/user');
 const { asyncMiddleware } = require('../middleware');
-const { validateUser } = require('../middleware');
-const { sanitizeUser } = require('../middleware');
-const checkFields = [ sanitizeUser, validateUser ]
+const { validateUser, sanitizeUser } = require('../middleware');
+
+const checkFields = [sanitizeUser, validateUser];
 
 // All the user routes
 router.get('/users', asyncMiddleware(userCtrl.getUsers));
